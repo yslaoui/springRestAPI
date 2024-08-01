@@ -45,23 +45,6 @@ public class StudentRestController {
             return new ResponseEntity<>(this.students, header, HttpStatus.FAILED_DEPENDENCY);
     }
 
-    @ExceptionHandler
-    public ResponseEntity<StudentCustomError> handleException(StudentNotFoundException exc) {
-        StudentCustomError studentCustomError = new StudentCustomError();
-        studentCustomError.setStatus(HttpStatus.NOT_FOUND.value());
-        studentCustomError.setMessage(exc.getMessage());
-        studentCustomError.setTimeStamp(System.currentTimeMillis());
-        return new ResponseEntity<StudentCustomError>(studentCustomError, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler
-    public ResponseEntity<StudentCustomError> handleException(Exception exc) {
-        StudentCustomError studentCustomError = new StudentCustomError();
-        studentCustomError.setStatus(HttpStatus.BAD_REQUEST.value());
-        studentCustomError.setMessage(exc.getMessage());
-        studentCustomError.setTimeStamp(System.currentTimeMillis());
-        return new ResponseEntity<StudentCustomError>(studentCustomError, HttpStatus.BAD_REQUEST);
-    }
 }
 
 
